@@ -8,11 +8,16 @@ project(assignment2_erb_actions)
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
+  aruco_ros
   actionlib
   geometry_msgs
   roscpp
   rosplan_planning_system
   std_msgs
+  sensor_msgs
+  cv_bridge
+  image_transport
+  
 )
 
 ## System dependencies are found with CMake's conventions
@@ -107,7 +112,7 @@ find_package(catkin REQUIRED COMPONENTS
 catkin_package(
 #  INCLUDE_DIRS include
 #  LIBRARIES assignment2_erb_actions
-#  CATKIN_DEPENDS actionlib geometry_msgs roscpp rosplan_planning_system std_msgs
+  CATKIN_DEPENDS actionlib geometry_msgs roscpp rosplan_planning_system std_msgs sensor_msgs image_transport cv_bridge aruco_ros
 #  DEPENDS system_lib
 )
 
@@ -136,6 +141,7 @@ include_directories(
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across packages don't collide
 add_executable(goto_waypoint src/goto_waypoint.cpp)
+add_executable(detect_marker src/detect_marker.cpp)
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -146,11 +152,11 @@ add_executable(goto_waypoint src/goto_waypoint.cpp)
 ## Add cmake target dependencies of the executable
 ## same as for the library above
 add_dependencies(goto_waypoint ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+add_dependencies(detect_marker ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 ## Specify libraries to link a library or executable target against
-target_link_libraries(goto_waypoint
-  ${catkin_LIBRARIES}
-)
+target_link_libraries(goto_waypoint ${catkin_LIBRARIES} )
+target_link_libraries(detect_marker ${catkin_LIBRARIES} )
 
 #############
 ## Install ##

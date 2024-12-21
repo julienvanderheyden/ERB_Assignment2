@@ -47,30 +47,44 @@
 	</node>
 	
 	<!-- Simulated Actions --> 
-	<!--
+	
 	<include file="$(find rosplan_planning_system)/launch/includes/simulated_action.launch">
 		<arg name="pddl_action_name" value="goto_waypoint"/>
 	</include>
-	-->
-
+	
+	
 	<include file="$(find rosplan_planning_system)/launch/includes/simulated_action.launch">
 		<arg name="pddl_action_name" value="goto_smallest"/>
 	</include>
 	
+	<!--
 	<include file="$(find rosplan_planning_system)/launch/includes/simulated_action.launch">
 		<arg name="pddl_action_name" value="detect_marker"/>
 	</include>
+	-->
 	
 	<include file="$(find rosplan_planning_system)/launch/includes/simulated_action.launch">
 		<arg name="pddl_action_name" value="sort"/>
 	</include>
 	
 	<!-- Implemented actions --> 
+	
+	<!--
 	<node name="rosplan_interface_goto_waypoint" pkg="assignment2_erb_actions" type="goto_waypoint" respawn="false" output="screen">
 		<param name="knowledge_base" value="rosplan_knowledge_base"/>
 		<param name="pddl_action_name" value="goto_waypoint"/>
 		<param name="action_dispatch_topic" value="/rosplan_plan_dispatcher/action_dispatch"/>
 		<param name="action_feedback_topic" value="/rosplan_plan_dispatcher/action_feedback"/>
 	</node>
+	-->
+	
+	
+	<node name="rosplan_interface_detect_marker" pkg="assignment2_erb_actions" type="detect_marker" respawn="false" output="screen">
+		<param name="knowledge_base" value="rosplan_knowledge_base"/>
+		<param name="pddl_action_name" value="detect_marker"/>
+		<param name="action_dispatch_topic" value="/rosplan_plan_dispatcher/action_dispatch"/>
+		<param name="action_feedback_topic" value="/rosplan_plan_dispatcher/action_feedback"/>
+	</node>
+	
 	
 </launch>
